@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Polling - Self Love & Self Care</title>
+    <title>Live Polling - Self Love & Self Care Muslimah</title>
     <!-- Chart.js untuk Grafik Live -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --primary: #8b5cf6;
-            --primary-light: #ddd6fe;
-            --bg-color: #faf5ff;
+            --sage-dark: #556b2f;
+            --sage-main: #8a9a86;
+            --sage-light: #b2ac88;
+            --sage-soft: #e8efe6;
             --card-bg: #ffffff;
-            --text-color: #3b0764;
+            --text-dark: #2d3b2d;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--sage-soft);
+            color: var(--text-dark);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -31,63 +32,111 @@
         }
 
         .btn-tab {
-            background: #e9d5ff;
+            background: #d4e0d2;
             border: none;
             padding: 10px 20px;
             border-radius: 20px;
             font-weight: bold;
-            color: var(--text-color);
+            color: var(--text-dark);
             cursor: pointer;
             margin: 0 5px;
             transition: 0.3s;
         }
 
         .btn-tab.active {
-            background: var(--primary);
+            background: var(--sage-dark);
             color: white;
         }
 
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             background: var(--card-bg);
             padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(85, 107, 47, 0.12);
             box-sizing: border-box;
+            border: 1px solid #d4e0d2;
+        }
+
+        /* Animasi Muslimah Header */
+        .illustration-container {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .illustration-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--sage-main);
+            background-color: var(--sage-soft);
         }
 
         h2 {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
+            color: var(--sage-dark);
             margin-bottom: 20px;
+            line-height: 1.4;
         }
 
-        /* Form HP Audiens */
+        /* Input Form Nama & Jurusan */
+        .input-group {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--sage-dark);
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid var(--sage-main);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            outline: none;
+            background: #fcfdfc;
+        }
+
+        .input-group input:focus {
+            border-color: var(--sage-dark);
+            box-shadow: 0 0 5px rgba(85, 107, 47, 0.3);
+        }
+
+        /* Form Opsi Voting */
         .option-btn {
             width: 100%;
-            background: #f3e8ff;
-            border: 2px solid #d8b4fe;
-            padding: 14px;
-            margin: 8px 0;
+            background: var(--sage-soft);
+            border: 1.5px solid var(--sage-main);
+            padding: 12px 15px;
+            margin: 6px 0;
             border-radius: 12px;
             text-align: left;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: 0.2s;
-            color: var(--text-color);
+            color: var(--text-dark);
             font-weight: 600;
         }
 
         .option-btn:hover, .option-btn.selected {
-            background: var(--primary);
+            background: var(--sage-dark);
             color: white;
-            border-color: var(--primary);
+            border-color: var(--sage-dark);
         }
 
         .submit-btn {
             width: 100%;
-            background: #7c3aed;
+            background: var(--sage-dark);
             color: white;
             border: none;
             padding: 14px;
@@ -96,28 +145,35 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #3e4f22;
         }
 
         /* Presenter View */
         .presenter-view {
             display: none;
+            max-width: 650px;
         }
 
         .chart-container {
             position: relative;
-            height: 300px;
+            height: 320px;
             width: 100%;
         }
 
         .stats-text {
             text-align: center;
-            font-size: 0.9rem;
-            color: #6b21a8;
+            font-size: 0.95rem;
+            color: var(--sage-dark);
             margin-top: 15px;
+            font-weight: bold;
         }
 
         .reset-btn {
-            background: #ef4444;
+            background: #d9534f;
             color: white;
             border: none;
             padding: 8px 15px;
@@ -125,56 +181,109 @@
             cursor: pointer;
             float: right;
             margin-top: 10px;
+            font-size: 0.8rem;
+        }
+
+        /* Daftar Responden di Presenter View */
+        .respondents-list {
+            margin-top: 25px;
+            text-align: left;
+            max-height: 150px;
+            overflow-y: auto;
+            border-top: 1px solid var(--sage-main);
+            padding-top: 10px;
+        }
+
+        .respondents-list h4 {
+            margin: 0 0 10px 0;
+            color: var(--sage-dark);
+            font-size: 0.9rem;
+        }
+
+        .respondent-item {
+            font-size: 0.8rem;
+            padding: 4px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            color: #555;
         }
     </style>
 </head>
 <body>
 
-    <!-- Tombol Navigasi Layar -->
+    <!-- Navigasi Tampilan (Untuk Demo / Presenter) -->
     <div class="header-nav">
-        <button class="btn-tab active" onclick="switchView('audiens')">📱 Tampilan HP Audiens</button>
-        <button class="btn-tab" onclick="switchView('presenter')">🖥️ Layar Presenter (Proyektor)</button>
+        <button class="btn-tab active" onclick="switchView('audiens')">📱 Layar HP Audiens</button>
+        <button class="btn-tab" onclick="switchView('presenter')">🖥️ Layar Proyektor Presenter</button>
     </div>
 
     <!-- 1. TAMPILAN HP AUDIENS -->
     <div id="audiensView" class="container">
-        <h2>✨ Kalau lagi stres/deadline, pelarian 'self-care' kamu biasanya apa?</h2>
-        <div id="optionsContainer">
-            <button class="option-btn" onclick="selectOption(0)">☕ Jajan kopi / makanan enak</button>
-            <button class="option-btn" onclick="selectOption(1)">🛒 Checkout e-commerce / belanja</button>
-            <button class="option-btn" onclick="selectOption(2)">📱 Doom scrolling / rebahan</button>
-            <button class="option-btn" onclick="selectOption(3)">🛌 Tidur / Ibadah / Curhat ke Allah</button>
+        <!-- Gambar Ilustrasi Muslimah -->
+        <div class="illustration-container">
+            <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=MuslimahSelfCare" alt="Muslimah Illustration" id="muslimahImg">
         </div>
-        <button class="submit-btn" onclick="submitVote()">Kirim Jawaban 🚀</button>
-        <p id="submittedMsg" style="display:none; text-align:center; color:green; font-weight:bold; margin-top:15px;">
-            ✅ Jawabanmu berhasil dikirim! Terima kasih.
+
+        <h2>✨ Kalau lagi stres/deadline, pelarian 'self-care' kamu biasanya apa?</h2>
+        
+        <div id="formContainer">
+            <!-- Input Identitas -->
+            <div class="input-group">
+                <label for="userName">Nama / Inisial:</label>
+                <input type="text" id="userName" placeholder="Contoh: Aisyah / A" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="userMajor">Asal Jurusan / Prodi:</label>
+                <input type="text" id="userMajor" placeholder="Contoh: Akuntansi / Ilmu Komunikasi" required>
+            </div>
+
+            <p style="font-size: 0.85rem; font-weight: bold; color: var(--sage-dark); margin: 15px 0 5px 0;">Pilih Jawabanmu:</p>
+            
+            <!-- Opsi Pilihan -->
+            <div id="optionsContainer">
+                <button class="option-btn" onclick="selectOption(0)">☕ Jajan kopi / makanan enak</button>
+                <button class="option-btn" onclick="selectOption(1)">🛒 Checkout e-commerce / belanja</button>
+                <button class="option-btn" onclick="selectOption(2)">📱 Doom scrolling / rebahan</button>
+                <button class="option-btn" onclick="selectOption(3)">🛌 Tidur / Ibadah / Curhat ke Allah</button>
+            </div>
+
+            <button class="submit-btn" onclick="submitVote()">Kirim Jawaban 🚀</button>
+        </div>
+
+        <p id="submittedMsg" style="display:none; text-align:center; color: var(--sage-dark); font-weight:bold; margin-top:20px; line-height: 1.5;">
+            🌿 Jazakillah khair!<br>
+            Jawabanmu sudah masuk ke layar proyektor.
         </p>
     </div>
 
     <!-- 2. TAMPILAN LAYAR PRESENTER -->
     <div id="presenterView" class="container presenter-view">
-        <h2>📊 Live Results: Pelarian Self-Care Audiens</h2>
+        <h2>📊 Live Results: Pelarian Self-Care Muslimah</h2>
         <div class="chart-container">
             <canvas id="pollChart"></canvas>
         </div>
         <div class="stats-text">Total Responden: <span id="totalVotes">0</span> Orang</div>
+        
+        <!-- Daftar Nama & Jurusan Responden -->
+        <div class="respondents-list">
+            <h4>Daftar Responden Terbaru:</h4>
+            <div id="respondentsContainer"><i>Belum ada jawaban masuk...</i></div>
+        </div>
+
         <button class="reset-btn" onclick="resetVotes()">Reset Data</button>
     </div>
 
     <script>
-        // Inisialisasi Data Default
-        let pollData = JSON.parse(localStorage.getItem('pollData')) || [0, 0, 0, 0];
+        // Ganti gambar ilustrasi muslimah dari Unsplash/DiceBear
+        document.getElementById('muslimahImg').src = "https://images.unsplash.com/photo-1584448141569-69f342da535c?auto=format&fit=crop&w=300&q=80";
+
+        let pollData = JSON.parse(localStorage.getItem('sagePollData')) || [0, 0, 0, 0];
+        let respondentsData = JSON.parse(localStorage.getItem('sageRespondents')) || [];
         let selectedIndex = null;
         let myChart = null;
 
-        const labels = [
-            'Jajan Kopi/Makan', 
-            'Checkout Belanja', 
-            'Doom Scrolling', 
-            'Tidur/Ibadah'
-        ];
+        const labels = ['Jajan Kopi/Makan', 'Checkout Belanja', 'Doom Scrolling', 'Tidur/Ibadah'];
 
-        // Fungsi Pilih Opsi
         function selectOption(index) {
             selectedIndex = index;
             const btns = document.querySelectorAll('.option-btn');
@@ -184,23 +293,34 @@
             });
         }
 
-        // Fungsi Kirim Jawaban
         function submitVote() {
+            const name = document.getElementById('userName').value.trim();
+            const major = document.getElementById('userMajor').value.trim();
+
+            if (!name || !major) {
+                alert('Tolong isi Nama dan Asal Jurusan dulu ya!');
+                return;
+            }
+
             if (selectedIndex === null) {
                 alert('Pilih salah satu jawaban dulu ya!');
                 return;
             }
+
+            // Simpan Voting
             pollData[selectedIndex]++;
-            localStorage.setItem('pollData', JSON.stringify(pollData));
-            
-            document.getElementById('optionsContainer').style.display = 'none';
-            document.querySelector('.submit-btn').style.display = 'none';
+            localStorage.setItem('sagePollData', JSON.stringify(pollData));
+
+            // Simpan Data Responden
+            respondentsData.unshift({ name, major, answer: labels[selectedIndex] });
+            localStorage.setItem('sageRespondents', JSON.stringify(respondentsData));
+
+            document.getElementById('formContainer').style.display = 'none';
             document.getElementById('submittedMsg').style.display = 'block';
 
             updateChart();
         }
 
-        // Fungsi Ganti Tampilan
         function switchView(view) {
             const tabs = document.querySelectorAll('.btn-tab');
             const audiensView = document.getElementById('audiensView');
@@ -220,7 +340,6 @@
             }
         }
 
-        // Render Grafik Chart.js
         function renderChart() {
             const ctx = document.getElementById('pollChart').getContext('2d');
             
@@ -231,9 +350,11 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Jumlah Suara',
+                        label: 'Jumlah Responden',
                         data: pollData,
-                        backgroundColor: ['#c084fc', '#f472b6', '#a78bfa', '#34d399'],
+                        backgroundColor: ['#8a9a86', '#b2ac88', '#556b2f', '#d4e0d2'],
+                        borderColor: '#556b2f',
+                        borderWidth: 1,
                         borderRadius: 8
                     }]
                 },
@@ -247,24 +368,39 @@
                 }
             });
 
-            const total = pollData.reduce((a, b) => a + b, 0);
-            document.getElementById('totalVotes').innerText = total;
+            updateRespondentsList();
         }
 
         function updateChart() {
             if (myChart) {
                 myChart.data.datasets[0].data = pollData;
                 myChart.update();
-                const total = pollData.reduce((a, b) => a + b, 0);
-                document.getElementById('totalVotes').innerText = total;
+                updateRespondentsList();
             }
         }
 
+        function updateRespondentsList() {
+            const total = pollData.reduce((a, b) => a + b, 0);
+            document.getElementById('totalVotes').innerText = total;
+
+            const container = document.getElementById('respondentsContainer');
+            if (respondentsData.length === 0) {
+                container.innerHTML = '<i>Belum ada jawaban masuk...</i>';
+                return;
+            }
+
+            container.innerHTML = respondentsData.map(r => 
+                `<div class="respondent-item"><b>${r.name}</b> (${r.major}) — <i>${r.answer}</i></div>`
+            ).join('');
+        }
+
         function resetVotes() {
-            if (confirm("Yakin mau reset data voting?")) {
+            if (confirm("Yakin mau reset semua data jawaban dan responden?")) {
                 pollData = [0, 0, 0, 0];
-                localStorage.setItem('pollData', JSON.stringify(pollData));
-                updateChart();
+                respondentsData = [];
+                localStorage.setItem('sagePollData', JSON.stringify(pollData));
+                localStorage.setItem('sageRespondents', JSON.stringify(respondentsData));
+                renderChart();
             }
         }
     </script>
