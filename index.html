@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Polling - Self Love & Self Care Muslimah</title>
+    <title>Live Polling & Refleksi - Self Love & Self Care Muslimah</title>
     <!-- Chart.js untuk Grafik Live -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -59,15 +59,15 @@
             border: 1px solid #d4e0d2;
         }
 
-        /* Animasi Muslimah Header */
+        /* Animasi/Gambar Muslimah */
         .illustration-container {
             text-align: center;
             margin-bottom: 15px;
         }
 
         .illustration-container img {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--sage-main);
@@ -82,9 +82,20 @@
             line-height: 1.4;
         }
 
-        /* Input Form Nama & Jurusan */
+        /* Indicator Step Form */
+        .step-indicator {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--sage-main);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Input Form */
         .input-group {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             text-align: left;
         }
 
@@ -96,18 +107,24 @@
             margin-bottom: 5px;
         }
 
-        .input-group input {
+        .input-group input, .input-group textarea {
             width: 100%;
-            padding: 10px 14px;
+            padding: 12px 14px;
             border: 1.5px solid var(--sage-main);
             border-radius: 10px;
             font-size: 0.9rem;
             box-sizing: border-box;
             outline: none;
             background: #fcfdfc;
+            font-family: inherit;
         }
 
-        .input-group input:focus {
+        .input-group textarea {
+            resize: vertical;
+            height: 90px;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
             border-color: var(--sage-dark);
             box-shadow: 0 0 5px rgba(85, 107, 47, 0.3);
         }
@@ -134,7 +151,7 @@
             border-color: var(--sage-dark);
         }
 
-        .submit-btn {
+        .btn-action {
             width: 100%;
             background: var(--sage-dark);
             color: white;
@@ -148,19 +165,19 @@
             transition: 0.3s;
         }
 
-        .submit-btn:hover {
+        .btn-action:hover {
             background: #3e4f22;
         }
 
         /* Presenter View */
         .presenter-view {
             display: none;
-            max-width: 650px;
+            max-width: 700px;
         }
 
         .chart-container {
             position: relative;
-            height: 320px;
+            height: 280px;
             width: 100%;
         }
 
@@ -184,33 +201,51 @@
             font-size: 0.8rem;
         }
 
-        /* Daftar Responden di Presenter View */
-        .respondents-list {
+        /* Card Hasil Refleksi Improvement */
+        .reflections-list {
             margin-top: 25px;
             text-align: left;
-            max-height: 150px;
-            overflow-y: auto;
-            border-top: 1px solid var(--sage-main);
-            padding-top: 10px;
+            border-top: 2px dashed var(--sage-main);
+            padding-top: 15px;
         }
 
-        .respondents-list h4 {
-            margin: 0 0 10px 0;
+        .reflections-list h4 {
+            margin: 0 0 12px 0;
             color: var(--sage-dark);
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
-        .respondent-item {
-            font-size: 0.8rem;
-            padding: 4px 0;
-            border-bottom: 1px dashed #e0e0e0;
-            color: #555;
+        .reflection-cards-container {
+            max-height: 220px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .reflection-card {
+            background: var(--sage-soft);
+            border-left: 4px solid var(--sage-dark);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .reflection-card .user-info {
+            font-weight: bold;
+            color: var(--sage-dark);
+            margin-bottom: 4px;
+        }
+
+        .reflection-card .user-text {
+            color: #333;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigasi Tampilan (Untuk Demo / Presenter) -->
+    <!-- Navigasi Tampilan (Bisa Diklik Saat Presentasi) -->
     <div class="header-nav">
         <button class="btn-tab active" onclick="switchView('audiens')">📱 Layar HP Audiens</button>
         <button class="btn-tab" onclick="switchView('presenter')">🖥️ Layar Proyektor Presenter</button>
@@ -218,15 +253,16 @@
 
     <!-- 1. TAMPILAN HP AUDIENS -->
     <div id="audiensView" class="container">
-        <!-- Gambar Ilustrasi Muslimah -->
+        <!-- Gambar Ilustrasi Muslimah Aesthetic -->
         <div class="illustration-container">
-            <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=MuslimahSelfCare" alt="Muslimah Illustration" id="muslimahImg">
+            <img src="https://images.unsplash.com/photo-1584448141569-69f342da535c?auto=format&fit=crop&w=300&q=80" alt="Muslimah Illustration">
         </div>
 
-        <h2>✨ Kalau lagi stres/deadline, pelarian 'self-care' kamu biasanya apa?</h2>
-        
-        <div id="formContainer">
-            <!-- Input Identitas -->
+        <!-- STEP 1: IDENTITAS (NAMA & JURUSAN) -->
+        <div id="stepIdentitas">
+            <div class="step-indicator">Langkah 1 dari 2</div>
+            <h2>🌸 Ahlan wa Sahlan!<br><span style="font-size:0.95rem; font-weight:normal;">Yuk, perkenalan singkat dulu sebelum mulai:</span></h2>
+            
             <div class="input-group">
                 <label for="userName">Nama / Inisial:</label>
                 <input type="text" id="userName" placeholder="Contoh: Aisyah / A" required>
@@ -237,53 +273,89 @@
                 <input type="text" id="userMajor" placeholder="Contoh: Akuntansi / Ilmu Komunikasi" required>
             </div>
 
-            <p style="font-size: 0.85rem; font-weight: bold; color: var(--sage-dark); margin: 15px 0 5px 0;">Pilih Jawabanmu:</p>
-            
-            <!-- Opsi Pilihan -->
-            <div id="optionsContainer">
-                <button class="option-btn" onclick="selectOption(0)">☕ Jajan kopi / makanan enak</button>
-                <button class="option-btn" onclick="selectOption(1)">🛒 Checkout e-commerce / belanja</button>
-                <button class="option-btn" onclick="selectOption(2)">📱 Doom scrolling / rebahan</button>
-                <button class="option-btn" onclick="selectOption(3)">🛌 Tidur / Ibadah / Curhat ke Allah</button>
-            </div>
-
-            <button class="submit-btn" onclick="submitVote()">Kirim Jawaban 🚀</button>
+            <button class="btn-action" onclick="goToQuestions()">Lanjut ke Pertanyaan ➡️</button>
         </div>
 
-        <p id="submittedMsg" style="display:none; text-align:center; color: var(--sage-dark); font-weight:bold; margin-top:20px; line-height: 1.5;">
-            🌿 Jazakillah khair!<br>
-            Jawabanmu sudah masuk ke layar proyektor.
-        </p>
+        <!-- STEP 2: SECTION QUESTIONING -->
+        <div id="stepQuestions" style="display: none;">
+            <div class="step-indicator">Langkah 2 dari 2</div>
+
+            <!-- Pertanyaan 1: Pilihan Ganda -->
+            <div style="margin-bottom: 20px;">
+                <h2 style="font-size:1.05rem; text-align:left; margin-bottom:10px;">1. Kalau lagi stres/deadline, pelarian 'self-care' kamu biasanya apa?</h2>
+                <div id="optionsContainer">
+                    <button class="option-btn" onclick="selectOption(0)">☕ Jajan kopi / makanan enak</button>
+                    <button class="option-btn" onclick="selectOption(1)">🛒 Checkout e-commerce / belanja</button>
+                    <button class="option-btn" onclick="selectOption(2)">📱 Doom scrolling / rebahan</button>
+                    <button class="option-btn" onclick="selectOption(3)">🛌 Tidur / Ibadah / Curhat ke Allah</button>
+                </div>
+            </div>
+
+            <!-- Pertanyaan 2: Isian Improvement Diri -->
+            <div class="input-group" style="margin-top: 20px;">
+                <label for="userImprovement" style="font-size:0.95rem; line-height:1.4;">
+                    2. 🌱 Hal atau kebiasaan baik apa saja yang sudah berhasil kamu **improve** pada diri kamu belakangan ini?
+                </label>
+                <textarea id="userImprovement" placeholder="Contoh: Sudah mulai bisa ngontrol emosi, kurangi jajan berlebihan, rajin shalat dhuha, atau mulai rutin olahraga..."></textarea>
+            </div>
+
+            <button class="btn-action" onclick="submitVote()">Kirim Jawaban 🚀</button>
+        </div>
+
+        <!-- PESAN SETELAH SUBMIT -->
+        <div id="submittedMsg" style="display:none; text-align:center;">
+            <h2 style="color:var(--sage-dark);">🌿 Jazakillah Khair!</h2>
+            <p style="font-size: 0.95rem; color: #444; line-height: 1.5;">
+                Jawaban & cerita perbaikan dirimu sudah berhasil dikirim ke layar proyektor.<br><br>
+                Semoga Allah selalu mudahkan proses <i>self-growth</i> kita ya! ✨
+            </p>
+        </div>
     </div>
 
-    <!-- 2. TAMPILAN LAYAR PRESENTER -->
+    <!-- 2. TAMPILAN LAYAR PRESENTER (PROYEKTOR) -->
     <div id="presenterView" class="container presenter-view">
-        <h2>📊 Live Results: Pelarian Self-Care Muslimah</h2>
+        <h2>📊 Live Results: Self-Care & Self-Growth Muslimah</h2>
+        
+        <!-- Grafik Pilihan Ganda -->
         <div class="chart-container">
             <canvas id="pollChart"></canvas>
         </div>
         <div class="stats-text">Total Responden: <span id="totalVotes">0</span> Orang</div>
         
-        <!-- Daftar Nama & Jurusan Responden -->
-        <div class="respondents-list">
-            <h4>Daftar Responden Terbaru:</h4>
-            <div id="respondentsContainer"><i>Belum ada jawaban masuk...</i></div>
+        <!-- Daftar Cerita Improvement Diri -->
+        <div class="reflections-list">
+            <h4>🌱 Cerita Self-Improvement dari Audiens:</h4>
+            <div class="reflection-cards-container" id="reflectionsContainer">
+                <i>Belum ada cerita masuk...</i>
+            </div>
         </div>
 
         <button class="reset-btn" onclick="resetVotes()">Reset Data</button>
     </div>
 
     <script>
-        // Ganti gambar ilustrasi muslimah dari Unsplash/DiceBear
-        document.getElementById('muslimahImg').src = "https://images.unsplash.com/photo-1584448141569-69f342da535c?auto=format&fit=crop&w=300&q=80";
-
-        let pollData = JSON.parse(localStorage.getItem('sagePollData')) || [0, 0, 0, 0];
-        let respondentsData = JSON.parse(localStorage.getItem('sageRespondents')) || [];
+        let pollData = JSON.parse(localStorage.getItem('sagePollDataV2')) || [0, 0, 0, 0];
+        let responsesData = JSON.parse(localStorage.getItem('sageResponsesV2')) || [];
         let selectedIndex = null;
         let myChart = null;
 
         const labels = ['Jajan Kopi/Makan', 'Checkout Belanja', 'Doom Scrolling', 'Tidur/Ibadah'];
 
+        // Lanjut dari Isi Nama/Jurusan ke Pertanyaan
+        function goToQuestions() {
+            const name = document.getElementById('userName').value.trim();
+            const major = document.getElementById('userMajor').value.trim();
+
+            if (!name || !major) {
+                alert('Tolong isi Nama dan Asal Jurusan dulu ya!');
+                return;
+            }
+
+            document.getElementById('stepIdentitas').style.display = 'none';
+            document.getElementById('stepQuestions').style.display = 'block';
+        }
+
+        // Pilih Opsi Pilihan Ganda
         function selectOption(index) {
             selectedIndex = index;
             const btns = document.querySelectorAll('.option-btn');
@@ -293,34 +365,42 @@
             });
         }
 
+        // Kirim Semua Jawaban
         function submitVote() {
             const name = document.getElementById('userName').value.trim();
             const major = document.getElementById('userMajor').value.trim();
-
-            if (!name || !major) {
-                alert('Tolong isi Nama dan Asal Jurusan dulu ya!');
-                return;
-            }
+            const improvement = document.getElementById('userImprovement').value.trim();
 
             if (selectedIndex === null) {
-                alert('Pilih salah satu jawaban dulu ya!');
+                alert('Tolong pilih salah satu opsi di pertanyaan nomor 1 ya!');
                 return;
             }
 
-            // Simpan Voting
+            if (!improvement) {
+                alert('Tolong tuliskan setidaknya 1 hal yang sudah kamu improve di pertanyaan nomor 2 ya!');
+                return;
+            }
+
+            // Simpan Voting Grafik
             pollData[selectedIndex]++;
-            localStorage.setItem('sagePollData', JSON.stringify(pollData));
+            localStorage.setItem('sagePollDataV2', JSON.stringify(pollData));
 
-            // Simpan Data Responden
-            respondentsData.unshift({ name, major, answer: labels[selectedIndex] });
-            localStorage.setItem('sageRespondents', JSON.stringify(respondentsData));
+            // Simpan Data Jawaban & Cerita Improvement
+            responsesData.unshift({
+                name: name,
+                major: major,
+                choice: labels[selectedIndex],
+                improvement: improvement
+            });
+            localStorage.setItem('sageResponsesV2', JSON.stringify(responsesData));
 
-            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('stepQuestions').style.display = 'none';
             document.getElementById('submittedMsg').style.display = 'block';
 
             updateChart();
         }
 
+        // Ganti Tampilan
         function switchView(view) {
             const tabs = document.querySelectorAll('.btn-tab');
             const audiensView = document.getElementById('audiensView');
@@ -340,6 +420,7 @@
             }
         }
 
+        // Render Grafik & List Cerita Refleksi
         function renderChart() {
             const ctx = document.getElementById('pollChart').getContext('2d');
             
@@ -368,38 +449,41 @@
                 }
             });
 
-            updateRespondentsList();
+            updateReflectionsList();
         }
 
         function updateChart() {
             if (myChart) {
                 myChart.data.datasets[0].data = pollData;
                 myChart.update();
-                updateRespondentsList();
+                updateReflectionsList();
             }
         }
 
-        function updateRespondentsList() {
+        function updateReflectionsList() {
             const total = pollData.reduce((a, b) => a + b, 0);
             document.getElementById('totalVotes').innerText = total;
 
-            const container = document.getElementById('respondentsContainer');
-            if (respondentsData.length === 0) {
-                container.innerHTML = '<i>Belum ada jawaban masuk...</i>';
+            const container = document.getElementById('reflectionsContainer');
+            if (responsesData.length === 0) {
+                container.innerHTML = '<i>Belum ada cerita masuk...</i>';
                 return;
             }
 
-            container.innerHTML = respondentsData.map(r => 
-                `<div class="respondent-item"><b>${r.name}</b> (${r.major}) — <i>${r.answer}</i></div>`
-            ).join('');
+            container.innerHTML = responsesData.map(r => `
+                <div class="reflection-card">
+                    <div class="user-info">👤 ${r.name} (${r.major}) — <span style="font-weight:normal; color:#666;">Pelarian: ${r.choice}</span></div>
+                    <div class="user-text">" ${r.improvement} "</div>
+                </div>
+            `).join('');
         }
 
         function resetVotes() {
-            if (confirm("Yakin mau reset semua data jawaban dan responden?")) {
+            if (confirm("Yakin mau reset semua data polling dan jawaban audiens?")) {
                 pollData = [0, 0, 0, 0];
-                respondentsData = [];
-                localStorage.setItem('sagePollData', JSON.stringify(pollData));
-                localStorage.setItem('sageRespondents', JSON.stringify(respondentsData));
+                responsesData = [];
+                localStorage.setItem('sagePollDataV2', JSON.stringify(pollData));
+                localStorage.setItem('sageResponsesV2', JSON.stringify(responsesData));
                 renderChart();
             }
         }
