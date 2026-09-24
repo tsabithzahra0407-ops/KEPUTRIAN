@@ -21,25 +21,26 @@
             background-color: var(--sage-soft);
             color: var(--text-dark);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .header-nav {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .btn-tab {
             background: #d4e0d2;
             border: none;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 20px;
             font-weight: bold;
             color: var(--text-dark);
             cursor: pointer;
-            margin: 0 5px;
+            margin: 0 4px;
+            font-size: 0.85rem;
             transition: 0.3s;
         }
 
@@ -50,50 +51,48 @@
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             background: var(--card-bg);
-            padding: 25px;
+            padding: 20px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(85, 107, 47, 0.12);
+            box-shadow: 0 8px 20px rgba(85, 107, 47, 0.12);
             box-sizing: border-box;
             border: 1px solid #d4e0d2;
         }
 
-        /* Animasi/Gambar Muslimah */
+        /* Gambar Ilustrasi Anime Muslimah Kecil Rapi */
         .illustration-container {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .illustration-container img {
-            width: 110px;
-            height: 110px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--sage-main);
+            border: 3px solid var(--sage-main);
             background-color: var(--sage-soft);
         }
 
         h2 {
             text-align: center;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--sage-dark);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.4;
         }
 
-        /* Indicator Step Form */
         .step-indicator {
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
             color: var(--sage-main);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* Input Form */
         .input-group {
             margin-bottom: 15px;
             text-align: left;
@@ -105,14 +104,15 @@
             font-weight: bold;
             color: var(--sage-dark);
             margin-bottom: 5px;
+            line-height: 1.3;
         }
 
         .input-group input, .input-group textarea {
             width: 100%;
-            padding: 12px 14px;
+            padding: 10px 12px;
             border: 1.5px solid var(--sage-main);
             border-radius: 10px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             box-sizing: border-box;
             outline: none;
             background: #fcfdfc;
@@ -121,7 +121,7 @@
 
         .input-group textarea {
             resize: vertical;
-            height: 90px;
+            height: 85px;
         }
 
         .input-group input:focus, .input-group textarea:focus {
@@ -130,15 +130,33 @@
         }
 
         /* Form Opsi Voting */
+        .question-block {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .question-title {
+            font-size: 0.92rem;
+            font-weight: bold;
+            color: var(--sage-dark);
+            margin-bottom: 8px;
+            line-height: 1.35;
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
         .option-btn {
             width: 100%;
             background: var(--sage-soft);
             border: 1.5px solid var(--sage-main);
-            padding: 12px 15px;
-            margin: 6px 0;
-            border-radius: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
             text-align: left;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: 0.2s;
             color: var(--text-dark);
@@ -156,12 +174,12 @@
             background: var(--sage-dark);
             color: white;
             border: none;
-            padding: 14px;
+            padding: 12px;
             border-radius: 12px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: 0.3s;
         }
 
@@ -177,16 +195,17 @@
 
         .chart-container {
             position: relative;
-            height: 280px;
+            height: 250px;
             width: 100%;
+            margin-bottom: 20px;
         }
 
         .stats-text {
             text-align: center;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--sage-dark);
-            margin-top: 15px;
             font-weight: bold;
+            margin-bottom: 15px;
         }
 
         .reset-btn {
@@ -203,20 +222,20 @@
 
         /* Card Hasil Refleksi Improvement */
         .reflections-list {
-            margin-top: 25px;
+            margin-top: 20px;
             text-align: left;
             border-top: 2px dashed var(--sage-main);
             padding-top: 15px;
         }
 
         .reflections-list h4 {
-            margin: 0 0 12px 0;
+            margin: 0 0 10px 0;
             color: var(--sage-dark);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .reflection-cards-container {
-            max-height: 220px;
+            max-height: 200px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -226,15 +245,15 @@
         .reflection-card {
             background: var(--sage-soft);
             border-left: 4px solid var(--sage-dark);
-            padding: 10px 14px;
+            padding: 10px;
             border-radius: 8px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
 
         .reflection-card .user-info {
             font-weight: bold;
             color: var(--sage-dark);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .reflection-card .user-text {
@@ -245,7 +264,7 @@
 </head>
 <body>
 
-    <!-- Navigasi Tampilan (Bisa Diklik Saat Presentasi) -->
+    <!-- Navigasi Tampilan -->
     <div class="header-nav">
         <button class="btn-tab active" onclick="switchView('audiens')">📱 Layar HP Audiens</button>
         <button class="btn-tab" onclick="switchView('presenter')">🖥️ Layar Proyektor Presenter</button>
@@ -253,15 +272,15 @@
 
     <!-- 1. TAMPILAN HP AUDIENS -->
     <div id="audiensView" class="container">
-        <!-- Gambar Ilustrasi Muslimah Aesthetic -->
+        <!-- Gambar Anime Muslimah Kecil Rapi -->
         <div class="illustration-container">
-            <img src="https://images.unsplash.com/photo-1584448141569-69f342da535c?auto=format&fit=crop&w=300&q=80" alt="Muslimah Illustration">
+            <img src="https://img.freepik.com/free-vector/hand-drawn-hijab-illustration_23-2149065097.jpg" alt="Muslimah Anime Icon">
         </div>
 
         <!-- STEP 1: IDENTITAS (NAMA & JURUSAN) -->
         <div id="stepIdentitas">
             <div class="step-indicator">Langkah 1 dari 2</div>
-            <h2>🌸 Ahlan wa Sahlan!<br><span style="font-size:0.95rem; font-weight:normal;">Yuk, perkenalan singkat dulu sebelum mulai:</span></h2>
+            <h2>🌸 Ahlan wa Sahlan!<br><span style="font-size:0.88rem; font-weight:normal;">Yuk, perkenalan singkat dulu sebelum mulai:</span></h2>
             
             <div class="input-group">
                 <label for="userName">Nama / Inisial:</label>
@@ -276,27 +295,38 @@
             <button class="btn-action" onclick="goToQuestions()">Lanjut ke Pertanyaan ➡️</button>
         </div>
 
-        <!-- STEP 2: SECTION QUESTIONING -->
+        <!-- STEP 2: 3 PERTANYAAN -->
         <div id="stepQuestions" style="display: none;">
             <div class="step-indicator">Langkah 2 dari 2</div>
 
             <!-- Pertanyaan 1: Pilihan Ganda -->
-            <div style="margin-bottom: 20px;">
-                <h2 style="font-size:1.05rem; text-align:left; margin-bottom:10px;">1. Kalau lagi stres/deadline, pelarian 'self-care' kamu biasanya apa?</h2>
-                <div id="optionsContainer">
-                    <button class="option-btn" onclick="selectOption(0)">☕ Jajan kopi / makanan enak</button>
-                    <button class="option-btn" onclick="selectOption(1)">🛒 Checkout e-commerce / belanja</button>
-                    <button class="option-btn" onclick="selectOption(2)">📱 Doom scrolling / rebahan</button>
-                    <button class="option-btn" onclick="selectOption(3)">🛌 Tidur / Ibadah / Curhat ke Allah</button>
+            <div class="question-block">
+                <div class="question-title">1. Kalau lagi stres / deadline, pelarian self-care kamu biasanya apa?</div>
+                <div class="option-group" id="q1Options">
+                    <button class="option-btn" onclick="selectQ1(0)">☕ Jajan kopi / makanan enak</button>
+                    <button class="option-btn" onclick="selectQ1(1)">🛒 Checkout e-commerce / belanja</button>
+                    <button class="option-btn" onclick="selectQ1(2)">📱 Doom scrolling / rebahan</button>
+                    <button class="option-btn" onclick="selectQ1(3)">🛌 Tidur / Ibadah / Curhat ke Allah</button>
                 </div>
             </div>
 
-            <!-- Pertanyaan 2: Isian Improvement Diri -->
-            <div class="input-group" style="margin-top: 20px;">
-                <label for="userImprovement" style="font-size:0.95rem; line-height:1.4;">
-                    2. 🌱 Hal atau kebiasaan baik apa saja yang sudah berhasil kamu **improve** pada diri kamu belakangan ini?
+            <!-- Pertanyaan 2: Pilihan Ganda Tambahan -->
+            <div class="question-block">
+                <div class="question-title">2. Bentuk "Self-Love" terbaik versi kamu saat ini adalah:</div>
+                <div class="option-group" id="q2Options">
+                    <button class="option-btn" onclick="selectQ2(0)">🛑 Berani berkata 'Tidak' pada hal toxic</button>
+                    <button class="option-btn" onclick="selectQ2(1)">💤 Cukup istirahat & tak memaksakan diri</button>
+                    <button class="option-btn" onclick="selectQ2(2)">📖 Menjaga hubungan baik dengan Allah</button>
+                    <button class="option-btn" onclick="selectQ2(3)">✨ Berhenti membandingkan diri sendiri</button>
+                </div>
+            </div>
+
+            <!-- Pertanyaan 3: Isian Bebas Improvement -->
+            <div class="input-group" style="margin-top: 15px;">
+                <label for="userImprovement">
+                    3. 🌱 Hal atau kebiasaan baik apa saja yang sudah berhasil kamu <b>improve</b> pada diri kamu belakangan ini?
                 </label>
-                <textarea id="userImprovement" placeholder="Contoh: Sudah mulai bisa ngontrol emosi, kurangi jajan berlebihan, rajin shalat dhuha, atau mulai rutin olahraga..."></textarea>
+                <textarea id="userImprovement" placeholder="Contoh: Mulai rutin shalat dhuha, belajar tidak gampang emosi, atau kurangi waktu main HP..."></textarea>
             </div>
 
             <button class="btn-action" onclick="submitVote()">Kirim Jawaban 🚀</button>
@@ -305,9 +335,9 @@
         <!-- PESAN SETELAH SUBMIT -->
         <div id="submittedMsg" style="display:none; text-align:center;">
             <h2 style="color:var(--sage-dark);">🌿 Jazakillah Khair!</h2>
-            <p style="font-size: 0.95rem; color: #444; line-height: 1.5;">
+            <p style="font-size: 0.9rem; color: #444; line-height: 1.5;">
                 Jawaban & cerita perbaikan dirimu sudah berhasil dikirim ke layar proyektor.<br><br>
-                Semoga Allah selalu mudahkan proses <i>self-growth</i> kita ya! ✨
+                Semoga Allah selalu memudahkan proses <i>self-growth</i> kita ya! ✨
             </p>
         </div>
     </div>
@@ -316,15 +346,23 @@
     <div id="presenterView" class="container presenter-view">
         <h2>📊 Live Results: Self-Care & Self-Growth Muslimah</h2>
         
-        <!-- Grafik Pilihan Ganda -->
+        <!-- Grafik Pertanyaan 1 -->
+        <h3 style="font-size:0.9rem; color:var(--sage-dark); text-align:center; margin-bottom:5px;">Grafik 1: Pelarian Self-Care Saat Stres</h3>
         <div class="chart-container">
-            <canvas id="pollChart"></canvas>
+            <canvas id="pollChart1"></canvas>
         </div>
+
+        <!-- Grafik Pertanyaan 2 -->
+        <h3 style="font-size:0.9rem; color:var(--sage-dark); text-align:center; margin-bottom:5px;">Grafik 2: Self-Love Terbaik Versi Audiens</h3>
+        <div class="chart-container">
+            <canvas id="pollChart2"></canvas>
+        </div>
+
         <div class="stats-text">Total Responden: <span id="totalVotes">0</span> Orang</div>
         
         <!-- Daftar Cerita Improvement Diri -->
         <div class="reflections-list">
-            <h4>🌱 Cerita Self-Improvement dari Audiens:</h4>
+            <h4>🌱 Cerita Self-Improvement dari Audiens (Pertanyaan 3):</h4>
             <div class="reflection-cards-container" id="reflectionsContainer">
                 <i>Belum ada cerita masuk...</i>
             </div>
@@ -334,14 +372,18 @@
     </div>
 
     <script>
-        let pollData = JSON.parse(localStorage.getItem('sagePollDataV2')) || [0, 0, 0, 0];
-        let responsesData = JSON.parse(localStorage.getItem('sageResponsesV2')) || [];
-        let selectedIndex = null;
-        let myChart = null;
+        let q1Data = JSON.parse(localStorage.getItem('sageQ1Data')) || [0, 0, 0, 0];
+        let q2Data = JSON.parse(localStorage.getItem('sageQ2Data')) || [0, 0, 0, 0];
+        let responsesData = JSON.parse(localStorage.getItem('sageResponsesV3')) || [];
+        
+        let selectedQ1 = null;
+        let selectedQ2 = null;
+        let chart1 = null;
+        let chart2 = null;
 
-        const labels = ['Jajan Kopi/Makan', 'Checkout Belanja', 'Doom Scrolling', 'Tidur/Ibadah'];
+        const labelsQ1 = ['Jajan Kopi/Makan', 'Checkout Belanja', 'Doom Scrolling', 'Tidur/Ibadah'];
+        const labelsQ2 = ['Berani Bilang Tidak', 'Cukup Istirahat', 'Dekat dengan Allah', 'Stop Membandingkan'];
 
-        // Lanjut dari Isi Nama/Jurusan ke Pertanyaan
         function goToQuestions() {
             const name = document.getElementById('userName').value.trim();
             const major = document.getElementById('userMajor').value.trim();
@@ -355,52 +397,63 @@
             document.getElementById('stepQuestions').style.display = 'block';
         }
 
-        // Pilih Opsi Pilihan Ganda
-        function selectOption(index) {
-            selectedIndex = index;
-            const btns = document.querySelectorAll('.option-btn');
+        function selectQ1(index) {
+            selectedQ1 = index;
+            const btns = document.querySelectorAll('#q1Options .option-btn');
             btns.forEach((btn, i) => {
                 if (i === index) btn.classList.add('selected');
                 else btn.classList.remove('selected');
             });
         }
 
-        // Kirim Semua Jawaban
+        function selectQ2(index) {
+            selectedQ2 = index;
+            const btns = document.querySelectorAll('#q2Options .option-btn');
+            btns.forEach((btn, i) => {
+                if (i === index) btn.classList.add('selected');
+                else btn.classList.remove('selected');
+            });
+        }
+
         function submitVote() {
             const name = document.getElementById('userName').value.trim();
             const major = document.getElementById('userMajor').value.trim();
             const improvement = document.getElementById('userImprovement').value.trim();
 
-            if (selectedIndex === null) {
-                alert('Tolong pilih salah satu opsi di pertanyaan nomor 1 ya!');
+            if (selectedQ1 === null) {
+                alert('Tolong pilih salah satu opsi di Pertanyaan 1 ya!');
                 return;
             }
-
+            if (selectedQ2 === null) {
+                alert('Tolong pilih salah satu opsi di Pertanyaan 2 ya!');
+                return;
+            }
             if (!improvement) {
-                alert('Tolong tuliskan setidaknya 1 hal yang sudah kamu improve di pertanyaan nomor 2 ya!');
+                alert('Tolong tuliskan hal yang kamu improve di Pertanyaan 3 ya!');
                 return;
             }
 
-            // Simpan Voting Grafik
-            pollData[selectedIndex]++;
-            localStorage.setItem('sagePollDataV2', JSON.stringify(pollData));
+            // Simpan Data
+            q1Data[selectedQ1]++;
+            q2Data[selectedQ2]++;
+            localStorage.setItem('sageQ1Data', JSON.stringify(q1Data));
+            localStorage.setItem('sageQ2Data', JSON.stringify(q2Data));
 
-            // Simpan Data Jawaban & Cerita Improvement
             responsesData.unshift({
                 name: name,
                 major: major,
-                choice: labels[selectedIndex],
+                q1: labelsQ1[selectedQ1],
+                q2: labelsQ2[selectedQ2],
                 improvement: improvement
             });
-            localStorage.setItem('sageResponsesV2', JSON.stringify(responsesData));
+            localStorage.setItem('sageResponsesV3', JSON.stringify(responsesData));
 
             document.getElementById('stepQuestions').style.display = 'none';
             document.getElementById('submittedMsg').style.display = 'block';
 
-            updateChart();
+            updateCharts();
         }
 
-        // Ganti Tampilan
         function switchView(view) {
             const tabs = document.querySelectorAll('.btn-tab');
             const audiensView = document.getElementById('audiensView');
@@ -416,52 +469,68 @@
                 tabs[0].classList.remove('active');
                 audiensView.style.display = 'none';
                 presenterView.style.display = 'block';
-                renderChart();
+                renderCharts();
             }
         }
 
-        // Render Grafik & List Cerita Refleksi
-        function renderChart() {
-            const ctx = document.getElementById('pollChart').getContext('2d');
+        function renderCharts() {
+            const ctx1 = document.getElementById('pollChart1').getContext('2d');
+            const ctx2 = document.getElementById('pollChart2').getContext('2d');
             
-            if (myChart) myChart.destroy();
+            if (chart1) chart1.destroy();
+            if (chart2) chart2.destroy();
 
-            myChart = new Chart(ctx, {
+            chart1 = new Chart(ctx1, {
                 type: 'bar',
                 data: {
-                    labels: labels,
+                    labels: labelsQ1,
                     datasets: [{
-                        label: 'Jumlah Responden',
-                        data: pollData,
-                        backgroundColor: ['#8a9a86', '#b2ac88', '#556b2f', '#d4e0d2'],
-                        borderColor: '#556b2f',
-                        borderWidth: 1,
-                        borderRadius: 8
+                        data: q1Data,
+                        backgroundColor: '#8a9a86',
+                        borderRadius: 6
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
-                    scales: {
-                        y: { beginAtZero: true, ticks: { stepSize: 1 } }
-                    }
+                    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+                }
+            });
+
+            chart2 = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: labelsQ2,
+                    datasets: [{
+                        data: q2Data,
+                        backgroundColor: '#556b2f',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
                 }
             });
 
             updateReflectionsList();
         }
 
-        function updateChart() {
-            if (myChart) {
-                myChart.data.datasets[0].data = pollData;
-                myChart.update();
+        function updateCharts() {
+            if (chart1 && chart2) {
+                chart1.data.datasets[0].data = q1Data;
+                chart2.data.datasets[0].data = q2Data;
+                chart1.update();
+                chart2.update();
                 updateReflectionsList();
             }
         }
 
         function updateReflectionsList() {
-            const total = pollData.reduce((a, b) => a + b, 0);
+            const total = q1Data.reduce((a, b) => a + b, 0);
             document.getElementById('totalVotes').innerText = total;
 
             const container = document.getElementById('reflectionsContainer');
@@ -472,7 +541,7 @@
 
             container.innerHTML = responsesData.map(r => `
                 <div class="reflection-card">
-                    <div class="user-info">👤 ${r.name} (${r.major}) — <span style="font-weight:normal; color:#666;">Pelarian: ${r.choice}</span></div>
+                    <div class="user-info">👤 ${r.name} (${r.major})</div>
                     <div class="user-text">" ${r.improvement} "</div>
                 </div>
             `).join('');
@@ -480,11 +549,13 @@
 
         function resetVotes() {
             if (confirm("Yakin mau reset semua data polling dan jawaban audiens?")) {
-                pollData = [0, 0, 0, 0];
+                q1Data = [0, 0, 0, 0];
+                q2Data = [0, 0, 0, 0];
                 responsesData = [];
-                localStorage.setItem('sagePollDataV2', JSON.stringify(pollData));
-                localStorage.setItem('sageResponsesV2', JSON.stringify(responsesData));
-                renderChart();
+                localStorage.setItem('sageQ1Data', JSON.stringify(q1Data));
+                localStorage.setItem('sageQ2Data', JSON.stringify(q2Data));
+                localStorage.setItem('sageResponsesV3', JSON.stringify(responsesData));
+                renderCharts();
             }
         }
     </script>
