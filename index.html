@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Polling - Self Love & Self Care</title>
+    <!-- Chart.js untuk Grafik Live -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-light: #ddd6fe;
+            --bg-color: #faf5ff;
+            --card-bg: #ffffff;
+            --text-color: #3b0764;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-nav {
+            margin-bottom: 20px;
+        }
+
+        .btn-tab {
+            background: #e9d5ff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: var(--text-color);
+            cursor: pointer;
+            margin: 0 5px;
+            transition: 0.3s;
+        }
+
+        .btn-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Form HP Audiens */
+        .option-btn {
+            width: 100%;
+            background: #f3e8ff;
+            border: 2px solid #d8b4fe;
+            padding: 14px;
+            margin: 8px 0;
+            border-radius: 12px;
+            text-align: left;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .option-btn:hover, .option-btn.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #7c3aed;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        /* Presenter View */
+        .presenter-view {
+            display: none;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        .stats-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6b21a8;
+            margin-top: 15px;
+        }
+
+        .reset-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            float: right;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol Navigasi Layar -->
+    <div class="header-nav">
+        <button class="btn-tab active" onclick="switchView('audiens')">📱 Tampilan HP Audiens</button>
+        <button class="btn-tab" onclick="switchView('presenter')">🖥️ Layar Presenter (Proyektor)</button>
+    </div>
+
+    <!-- 1. TAMPILAN HP AUDIENS -->
+    <div id="audiensView" class="container">
+        <h2>✨ Kalau lagi stres/deadline, pelarian 'self-care' kamu biasanya apa?</h2>
+        <div id="optionsContainer">
+            <button class="option-btn" onclick="selectOption(0)">☕ Jajan kopi / makanan enak</button>
+            <button class="option-btn" onclick="selectOption(1)">🛒 Checkout e-commerce / belanja</button>
+            <button class="option-btn" onclick="selectOption(2)">📱 Doom scrolling / rebahan</button>
+            <button class="option-btn" onclick="selectOption(3)">🛌 Tidur / Ibadah / Curhat ke Allah</button>
+        </div>
+        <button class="submit-btn" onclick="submitVote()">Kirim Jawaban 🚀</button>
+        <p id="submittedMsg" style="display:none; text-align:center; color:green; font-weight:bold; margin-top:15px;">
+            ✅ Jawabanmu berhasil dikirim! Terima kasih.
+        </p>
+    </div>
+
+    <!-- 2. TAMPILAN LAYAR PRESENTER -->
+    <div id="presenterView" class="container presenter-view">
+        <h2>📊 Live Results: Pelarian Self-Care Audiens</h2>
+        <div class="chart-container">
+            <canvas id="pollChart"></canvas>
+        </div>
+        <div class="stats-text">Total Responden: <span id="totalVotes">0</span> Orang</div>
+        <button class="reset-btn" onclick="resetVotes()">Reset Data</button>
+    </div>
+
+    <script>
+        // Inisialisasi Data Default
+        let pollData = JSON.parse(localStorage.getItem('pollData')) || [0, 0, 0, 0];
+        let selectedIndex = null;
+        let myChart = null;
+
+        const labels = [
+            'Jajan Kopi/Makan', 
+            'Checkout Belanja', 
+            'Doom Scrolling', 
+            'Tidur/Ibadah'
+        ];
+
+        // Fungsi Pilih Opsi
+        function selectOption(index) {
+            selectedIndex = index;
+            const btns = document.querySelectorAll('.option-btn');
+            btns.forEach((btn, i) => {
+                if (i === index) btn.classList.add('selected');
+                else btn.classList.remove('selected');
+            });
+        }
+
+        // Fungsi Kirim Jawaban
+        function submitVote() {
+            if (selectedIndex === null) {
+                alert('Pilih salah satu jawaban dulu ya!');
+                return;
+            }
+            pollData[selectedIndex]++;
+            localStorage.setItem('pollData', JSON.stringify(pollData));
+            
+            document.getElementById('optionsContainer').style.display = 'none';
+            document.querySelector('.submit-btn').style.display = 'none';
+            document.getElementById('submittedMsg').style.display = 'block';
+
+            updateChart();
+        }
+
+        // Fungsi Ganti Tampilan
+        function switchView(view) {
+            const tabs = document.querySelectorAll('.btn-tab');
+            const audiensView = document.getElementById('audiensView');
+            const presenterView = document.getElementById('presenterView');
+
+            if (view === 'audiens') {
+                tabs[0].classList.add('active');
+                tabs[1].classList.remove('active');
+                audiensView.style.display = 'block';
+                presenterView.style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                tabs[0].classList.remove('active');
+                audiensView.style.display = 'none';
+                presenterView.style.display = 'block';
+                renderChart();
+            }
+        }
+
+        // Render Grafik Chart.js
+        function renderChart() {
+            const ctx = document.getElementById('pollChart').getContext('2d');
+            
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Jumlah Suara',
+                        data: pollData,
+                        backgroundColor: ['#c084fc', '#f472b6', '#a78bfa', '#34d399'],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                    }
+                }
+            });
+
+            const total = pollData.reduce((a, b) => a + b, 0);
+            document.getElementById('totalVotes').innerText = total;
+        }
+
+        function updateChart() {
+            if (myChart) {
+                myChart.data.datasets[0].data = pollData;
+                myChart.update();
+                const total = pollData.reduce((a, b) => a + b, 0);
+                document.getElementById('totalVotes').innerText = total;
+            }
+        }
+
+        function resetVotes() {
+            if (confirm("Yakin mau reset data voting?")) {
+                pollData = [0, 0, 0, 0];
+                localStorage.setItem('pollData', JSON.stringify(pollData));
+                updateChart();
+            }
+        }
+    </script>
+</body>
+</html>
